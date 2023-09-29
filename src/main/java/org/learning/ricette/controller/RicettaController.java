@@ -1,16 +1,15 @@
 package org.learning.ricette.controller;
 
 
-
+import jakarta.validation.Valid;
 import org.learning.ricette.model.Ricetta;
 import org.learning.ricette.repository.RicettaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -41,6 +40,26 @@ public class RicettaController {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La ricetta non è presente sul sito");
         }
+    }
+    @GetMapping("/create")
+    public String create(Model model) {
+        model.addAttribute("ricetta", new Ricetta());
+        return "form";
+
+    }
+
+    @PostMapping("/create")
+    public String doCreate(@Valid @ModelAttribute("pizza") Ricetta formRicetta, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("ricette", ricettaRepository.findAll());
+
+            return "form";
+        }
+        formRicetta.setTitolo(formRicetta.getTitolo().toUpperCase());
+
+        ricettaRepository.save(formRicetta);
+        return "redirect:/ricette";
     }
 }
 
