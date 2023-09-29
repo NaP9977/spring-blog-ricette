@@ -11,13 +11,13 @@ public class Ricetta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String titolo;
-
+    @Column(name = "lista_ingredienti", length=1000)
     private String listaIngredienti;
 
     private String url;
     private LocalTime tempo;
     private Integer porzioni;
-
+@Column(length = 1000)
     private String testoRicetta;
 
     public Integer getId() {
