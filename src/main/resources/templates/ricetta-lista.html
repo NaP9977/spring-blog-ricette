@@ -6,14 +6,15 @@
     <title>Ricette</title>
 </head>
 <body>
-<div class="container">
-    <a th:href="@{/ricette/create}" class="btn btn-primary">Aggiungi ricetta</a>
+<div class="container d-flex">
+
     <div class="row">
-
+        <a th:href="@{/ricette/create}" class="btn btn-primary">Aggiungi ricetta</a>
         <div th:each="ricetta : ${ricette}" class="col-md-4">
-            <div class="card" >
 
+            <div class="card" >
                 <img th:src="${ricetta.url}" class="card-img-top" alt="Immagine della ricetta">
+
                 <div class="card-body">
 
                     <h5 class="card-title" th:text="${ricetta.titolo}"></h5>
