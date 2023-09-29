@@ -9,8 +9,8 @@
 <div class="container d-flex">
 
     <div class="row">
-        <a th:href="@{/ricette/create}" class="btn btn-primary">Aggiungi ricetta</a>
-        <div th:each="ricetta : ${ricette}" class="col-md-4">
+        <a th:href="@{/ricette/create}" class="btn btn-primary btn-sm">Aggiungi ricetta</a>
+        <div th:each="ricetta : ${ricette}" class="col-4">
 
             <div class="card" >
                 <img th:src="${ricetta.url}" class="card-img-top" alt="Immagine della ricetta">
